@@ -8,47 +8,64 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <title>Document</title>
     <style>
-    #inputState{
+    .inputCategory{
         width: 150px;
-       
     }
-    
+    table>tr>td:last-of-type{
+        position:relative;
+    }
+
+    table>tr>td:last-of-type .inputCategory{
+        position:absolute;
+        z-index: 2;
+        top:0;
+        left:10px;
+    }
+
+    .userInfo{
+        display: none;
+       left:-230px!important;
+        height: 200px!important;
+        width: 300px!important;
+    }
     </style>
 </head>
 <body>
     <div class="container-fluid ">
         <nav class="navbar navbar-dark bg-dark m-0 p-3">
             <a class="navbar-brand" href="#">M3-D7 USERDATABASE FILTER</a>
-          </nav>
-        <div class="row ">
-               <div class="col">
-                <h1 class="h1"> Lets filter some names !!!!!</h1>
-                <form action="submit">
+        </nav>
+        <div class="row d-flex justify-content-center ">
+            <div class="col-6 text-center">
+                <h1 class="h1 p-2 bg-warning m-2"> Lets filter some users !!!!!</h1>
+                <form action="submit d-flex text-center">
                     <label for="search">Filter with</label>
-                        <input type="search" name="" id="search" onkeyup="filterUser(event)" placeholder="Search here">
-                    
-                    <select id="inputState" class="form-control m-1">
-                    
-                        <option>Name</option>
-                        <option>Email</option>
-                        <option>Username</option>
-                      </select>
+                    <input type="search" name="" id="search" onkeyup="filterUser(event)" placeholder="Search here">
+                        <select id="inputCategory" class="form-control m-3 ">
+                            <option>name</option>
+                            <option>email</option>
+                            <option>username</option>
+                        </select>
                     </form>
                     <a class="btn bg-success" type="button" id="displayNamesBtn" onclick="displayNames(event)">Display Names</a>
                     <a class="btn bg-warning" type="button" id="displayaddressBtn"  onclick="displayAddress(event)">Display Address</a>
-                    
-                
-               </div>
+                    <a class="btn bg-warning" type="button" id="toggleBtn"  onclick="sortData(event)">Sort</a>
+            </div>
             </div>
             <hr>
                 <h1>Display </h1>
-                <ul>
+                <div class="d-flex ">
+                    <ul>
 
-                </ul>
+                    </ul>
+                    <ul>
+    
+                    </ul>
+                </div>
                 <table>
 
                 </table>
-            
+                
         </div>
     </div>
     
