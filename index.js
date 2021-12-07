@@ -31,11 +31,15 @@ const renderFilter = async (userInput) => {
 }
 
 // fetch data
+
 const loadAll = function(userInput){
     fetch("https://jsonplaceholder.typicode.com/users")
 .then(response => response.json())
 .then(users => {
     display(users)
+})
+.catch(err=>{
+    console.error(err)
 })
 }
 
@@ -48,11 +52,23 @@ const filterUser = function(event){
         const filteredData = (users.filter((user)=> user[category].toLowerCase().includes(userInput.toLowerCase())))
         display(filteredData) 
         })
+        .catch(err=>{
+            console.error(err)
+        })
 }
 
 const sortData = function(){
-
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(users => { 
+        const sortedData = users.sort((a,b)=>(a > b ? 1 : -1))
+       display(sortedData)
+        })
+        .catch(err=>{
+            console.error(err)
+        })
 }
+
 
 // display all the information in the table
 const display= function(users){
@@ -66,14 +82,10 @@ const display= function(users){
                         <td class="p-2 text-left">${data.email}</td>
                         <td class="p-2 text-left">${data.address.street} ${data.address.suite} ${data.address.city} ${data.address.zipcode} ${data.address.geo.lat} ${data.address.geo.lng}</td>
                         <td class="p-2 text-left">
-                        
-                        
-                        
-
                         <button type="button" onclick="extraInfo(event)" id="${data.id}">
                           See more
                         </button>
-                        <div class=" h-100 userInfo">
+                        <div class=" h-100 userInfo p-3">
 
                         </div>
                    
@@ -84,19 +96,20 @@ const display= function(users){
 
 
 const extraInfo = function(event){
-    let card = document.querySelector(".userInfo")
-    card.style.display ="block"
+    let card = document.querySelectorAll(".userInfo")
     let userId = event.target.id
+    card[userId-1].style.display="block"
     console.log(userId)
     fetch("https://jsonplaceholder.typicode.com/users/" + userId)
     .then(response=> response.json())
     .then(jsonData => {
-        let container = document.querySelector(".userInfo")
+        let container = document.querySelectorAll(".userInfo")
         container.innerHTML=""
-        let div = document.querySelector(".userInfo")
+        // let div = document.querySelector(".userInfo")
         // div.innerHTML=""
-      container.innerHTML =`<div class="card" style="width: 18rem;">
-    
+       
+      container[userId-1].innerHTML =`<div class="card p-1" style="width: 18rem;">
+      <p class="card-text">${jsonData.name}</p>
             <h5 class="card-title">${jsonData.company.name}</h5>
             <p class="card-text">${jsonData.company.catchPhrase}</p>
             <p class="card-text">${jsonData.company.bs}</p>
@@ -107,16 +120,11 @@ const extraInfo = function(event){
     })
 }
 
+
+
+
 window.onload =function(){
 loadAll()
 
 
-
-
-
-    fetch("https://jsonplaceholder.typicode.com/users/" + 1)
-    .then(response=> response.json())
-    .then(jsonData => {
-    
-    })
 }
