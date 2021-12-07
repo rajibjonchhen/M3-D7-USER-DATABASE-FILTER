@@ -17,8 +17,8 @@
             <div class="col-12 col-lg-4">
                 <p class="h1"> Lets filter some names !!!!!</p>
                 <form action="submit">
-                    <div><label for="">Filter with</label>
-                        <input type="search" name="" id="" placeholder="Search here"></div>
+                    <div><label for="search">Filter with</label>
+                        <input type="search" name="" id="search" onkeyup="filterName(event)" placeholder="Search here"></div>
                    <div>
                     <label for="">Select the category</label>
                     <select id="inputState" class="form-control">
@@ -27,11 +27,19 @@
                         <option>Email</option>
                         <option>Username</option>
                       </select>
+                      
                    </div>
                 </form>
+                <div>
+                    <button type="button" id="displayNamesBtn" onclick="displayNames(event)">Display Names</button>
+                    <button type="button" id="displayNamesBtn" onclick="displayAddress(event)">Display Address</button>
+                </div>
             </div>
             <div class="col-12 col-lg-8">
-
+                <h1>Display </h1>
+                <table>
+                    
+                </table>
             </div>
         </div>
     </div>
