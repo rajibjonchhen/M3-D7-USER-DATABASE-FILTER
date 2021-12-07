@@ -7,40 +7,52 @@
     <script src="https://kit.fontawesome.com/73c4ca1b43.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <title>Document</title>
+    <style>
+    #inputState{
+        width: 150px;
+       
+    }
+    
+    </style>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <nav class="navbar navbar-dark bg-dark m-0 p-3">
             <a class="navbar-brand" href="#">M3-D7 USERDATABASE FILTER</a>
           </nav>
-        <div class="row">
-            <div class="col-12 col-lg-4">
-                <p class="h1"> Lets filter some names !!!!!</p>
+        <div class="row ">
+               <div class="col">
+                <h1 class="h1"> Lets filter some names !!!!!</h1>
                 <form action="submit">
-                    <div><label for="search">Filter with</label>
-                        <input type="search" name="" id="search" onkeyup="filterName(event)" placeholder="Search here"></div>
-                   <div>
-                    <label for="">Select the category</label>
-                    <select id="inputState" class="form-control">
-                        <option selected>Choose one</option>
+                    <label for="search">Filter with</label>
+                        <input type="search" name="" id="search" onkeyup="filterName(event)" placeholder="Search here">
+                    
+                   
+                    
+                    <select id="inputState" class="form-control m-1">
+                    
                         <option>Name</option>
                         <option>Email</option>
                         <option>Username</option>
                       </select>
                       
-                   </div>
-                </form>
-                <div>
-                    <button type="button" id="displayNamesBtn" onclick="displayNames(event)">Display Names</button>
-                    <button type="button" id="displayNamesBtn" onclick="displayAddress(event)">Display Address</button>
-                </div>
+                    </form>
+                
+           
+                    <button class="btn bg-success" type="button" id="displayNamesBtn" onclick="displayNames(event)">Display Names</button>
+                    <button class="btn bg-warning" type="button" id="displayNamesBtn" onclick="displayAddress(event)">Display Address</button>
+                
+               </div>
             </div>
-            <div class="col-12 col-lg-8">
+            <hr>
                 <h1>Display </h1>
                 <ul>
-                    
+
                 </ul>
-            </div>
+                <table>
+
+                </table>
+            
         </div>
     </div>
     

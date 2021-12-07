@@ -1,35 +1,36 @@
-// const renderFilter = function(userInput){
-//     fetch("https://jsonplaceholder.typicode.com/users")
-// .then(response => response.json())
-// .then(users => {
-//     let ul = document.querySelector("ul")
-    
-//    ul.innerHTML=""
-//     users.forEach(data => {
-     
-//      if(userInput === "address"){
-//         let address= JSON.stringify(data.address)
-//         ul.innerHTML += `<li>  ${address}</li>`
-//      }else
-//         ul.innerHTML += `<li>  ${data[userInput]}</li>`
+const displayAll = function(userInput){
+    fetch("https://jsonplaceholder.typicode.com/users")
+.then(response => response.json())
+.then(users => {
+    let table = document.querySelector("table")
+    users.forEach(data => {
+     table.innerHTML +=`<tr>
+                        <td class="p-2 text-left">${data.id}</td>
+                        <td class="p-2 text-left">${data.name}</td>
+                        <td class="p-2 text-left">${data.username}</td>
+                        <td class="p-2 text-left">${data.email}</td>
+                        <td class="p-2 text-left">${data.address.street} ${data.address.suite} ${data.address.city} ${data.address.zipcode} ${data.address.geo.lat} ${data.address.geo.lng}</td>
+                        <div></div>
+                        </tr>`
        
-       
-//     })
-// })
-// }
+    })
+})
+}
 
 const renderFilter = async (userInput) => {  
 
     let response = await fetch('https://jsonplaceholder.typicode.com/users');  
-    let users = await response.json()    
+    let users = await response.json()   
+
     let ul = document.querySelector("ul")
     
        ul.innerHTML=""
         users.forEach(data => {
          
          if(userInput === "address"){
-            let address= JSON.stringify(data.address)
-            ul.innerHTML += `<li>  ${address}</li>`
+           
+            ul.innerHTML += `<li class="p-2 text-left">${data.address.street}, ${data.address.suite} ,${data.address.city}, ${data.address.zipcode}, ${data.address.geo.lat}, ${data.address.geo.lng}</li>
+            `
          }else
             ul.innerHTML += `<li>  ${data[userInput]}</li>`
         })
@@ -38,7 +39,9 @@ const renderFilter = async (userInput) => {
 
 const filterName = function(event){
     let userInput = event.target.value;
+    let category = document.querySelector("select").value
     renderFilteredName(userInput)
+
 
 }
 
@@ -52,7 +55,7 @@ renderFilteredName = function(userInput){
         filteredData.forEach(data =>{
             
             table.innerHTML += `<tr>
-                                <td>  ${data[userInput]}</td>
+                                <td>  ${data["name"]}</td>
                             </tr>`
         })
     })
@@ -69,5 +72,5 @@ const displayAddress =function(){
 }
 
 window.onload =function(){
-
+displayAll()
 }
