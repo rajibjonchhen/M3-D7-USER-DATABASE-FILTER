@@ -3,12 +3,16 @@
 // connected with display name button
 const displayNames = function(event){
     let name= "name"
+    let ul1 = document.querySelector("ul:first-of-type")
+    ul1.classList.toggle("toggleDisplay")
     renderFilter(name)
 }
 
 // connected with display address button
 const displayAddress =function(){
     let address ="address"
+    let ul2 = document.querySelector("ul:last-of-type")
+    ul2.classList.toggle("toggleDisplay")
     renderFilter(address)
 }
 
@@ -37,6 +41,7 @@ const loadAll = function(userInput){
 .then(response => response.json())
 .then(users => {
     display(users)
+    filterUser(users)
 })
 .catch(err=>{
     console.error(err)
