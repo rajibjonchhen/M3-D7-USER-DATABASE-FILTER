@@ -57,12 +57,21 @@ const filterUser = function(event){
         })
 }
 
-const sortData = function(){
+const sortData = function(event){
     fetch("https://jsonplaceholder.typicode.com/users")
     .then(response => response.json())
     .then(users => { 
-        const sortedData = users.sort((a,b)=>(a > b ? 1 : -1))
-       display(sortedData)
+        let id= event.target.id
+        if(id ==="toDecending"){
+            event.target.id = "toAscending"
+            const sortedData = users.sort((a,b)=>(a > b ? 1 : -1))
+            display(sortedData)
+        } else{
+            
+            event.target.id = "toDecending"
+                const sortedData = users.sort((a,b)=>(a > b ? -1 : 1))
+               display(sortedData)
+        }
         })
         .catch(err=>{
             console.error(err)
@@ -85,8 +94,11 @@ const display= function(users){
                         <button type="button" onclick="extraInfo(event)" id="${data.id}">
                           See more
                         </button>
+                        <div class="extraInfo-container h-100 p-3">
+                        
                         <div class=" h-100 userInfo p-3">
 
+                        </div>
                         </div>
                    
                         </td> </tr>`
@@ -98,7 +110,7 @@ const display= function(users){
 const extraInfo = function(event){
     let card = document.querySelectorAll(".userInfo")
     let userId = event.target.id
-    card[userId-1].style.display="block"
+    card[userId-1].classList.toggle("toggleDisplay")
     console.log(userId)
     fetch("https://jsonplaceholder.typicode.com/users/" + userId)
     .then(response=> response.json())
@@ -110,7 +122,7 @@ const extraInfo = function(event){
        
       container[userId-1].innerHTML =`<div class="card p-1" style="width: 18rem;">
       <p class="card-text">${jsonData.name}</p>
-            <h5 class="card-title">${jsonData.company.name}</h5>
+            <p class="card-title">Company -${jsonData.company.name}</p>
             <p class="card-text">${jsonData.company.catchPhrase}</p>
             <p class="card-text">${jsonData.company.bs}</p>
         </div>
